@@ -82,5 +82,20 @@
       width: 300px;
       height: 300px;
     }
+    .time svg{
+      width: 280px;
+      height: 280px;
+    }
+    svg circle{
+    cx: 140;
+    cy:140;
+    r: 135;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke: #F87070;
+  }
+  .h1{
+    font-size: 5em;
+  }
   }
 </style>
