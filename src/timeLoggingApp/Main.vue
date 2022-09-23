@@ -1,6 +1,6 @@
 <template>
-  <div class="main" :class="[selected, select]">
-    <Pomodro />
+  <div class="main" :class="select">
+    <Pomodro :selected="selected" :class="selected"/>
     <!-- <Settings v-if="show" :show="show" @toggle-show="toggleShow"/> -->
     <div class="settings" v-show="shows">
         <form >
@@ -144,7 +144,7 @@ body{
   margin: 0;
   padding: 0;
 }
-circle{
+svg circle{
   stroke: red;
 }
   .main{
@@ -172,9 +172,8 @@ circle{
   .verd, .verd button{
     font-family: cursive;
   }
-
+  
    button{
-    color:#fff;
     /* background: #F87070; */
     background: transparent;
   }
@@ -344,12 +343,16 @@ circle{
     top: 10px;
     width: 5px;
     height: 14px;
-    border:solid #fff;
+    border:solid #161932;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }
   .check1 label input:checked ~ .check, .check2 label input:checked ~ .check {
-    background:#161932;
+    background: #161932;
+    color: #fff;
+  }
+  .check2 label input:checked ~ .check {
+    background: transparent;
     color: #fff;
   }
   .check2 label:nth-child(1){

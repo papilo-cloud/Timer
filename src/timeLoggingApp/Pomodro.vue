@@ -6,7 +6,7 @@
       <BtnGroups text="short break" class="but"/>
       <BtnGroups text="long break" class="but"/>
     </div>
-    <Time/>
+    <Time :class="selected"/>
   </div>
 </template> 
 
@@ -18,6 +18,9 @@ import Time from './Time.vue';
     components: { BtnGroups, Time },
     data() {
       return{
+        props:{
+          selected: String
+        },
         butns:[
           {
             id: 1,
@@ -57,9 +60,23 @@ import Time from './Time.vue';
     width: 100%;
     padding: 0 1rem;
   }
+  .but{
+    color: #fff;
+  }
   .active{
-    background: red;
+    /* background: red; */
     border-radius:25px;
+    color: #161932;
+  }
+  .color1 .active{
+    background: #F87070;
+    color: #fff;
+  }
+  .color2 .active{
+    background: #70F380;
+  }
+  .color3 .active{
+    background: #70f3f8; 
   }
   h4{
     margin: 2rem 0;

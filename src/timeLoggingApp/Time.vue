@@ -15,6 +15,7 @@
   export default { 
     name: 'Time',
     props:{
+      selected: String
     }
   }
 </script>
@@ -72,7 +73,16 @@
     stroke-dasharray: 603.2;
     stroke-dashoffset: 603.2;
     transform-origin: 50% 50%;
-     animation: anim 2s linear;
+     animation: anim 2s infinite;
+  }
+  .color1 svg circle{
+    background: #F87070;
+  }
+  .color2 svg circle{
+    stroke: #70F380;
+  }
+  .color3 svg circle{
+    stroke: #70f3f8; 
   }
   .h1{
     position: absolute;
