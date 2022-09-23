@@ -1,10 +1,10 @@
 <template>
   <div class="pom">
     <h4>pomodoro</h4>
-    <div class="btn" ref="butn">
-      <BtnGroups text="pomodoro" class="but active"/>
-      <BtnGroups text="short break" class="but"/>
-      <BtnGroups text="long break" class="but"/>
+    <div class="btn">
+      <BtnGroups text="pomodoro" class="but active" id="1"/>
+      <BtnGroups text="short break" class="but" id="2"/>
+      <BtnGroups text="long break" class="but" id="3"/>
     </div>
     <Time :class="selected"/>
   </div>
@@ -81,6 +81,9 @@ import Time from './Time.vue';
   h4{
     margin: 2rem 0;
     letter-spacing: .2em;
+  }
+  .but{
+    color: #fff;
   }
   .btn{
     display:flex;

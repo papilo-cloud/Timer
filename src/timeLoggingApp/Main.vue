@@ -144,9 +144,7 @@ body{
   margin: 0;
   padding: 0;
 }
-svg circle{
-  stroke: red;
-}
+
   .main{
     position: relative;
     max-width: 700px;
@@ -246,10 +244,10 @@ svg circle{
     outline: none;
     padding: 12px 22px;
     letter-spacing: 2px;
-    border-radius: 15px;
+    border-radius: 25px;
     background: #F87070;
     color:#fff;
-    bottom: -5px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="butn">
-    <button class="btnn">{{text}}</button>
+    <button @click="onClick" class="btnn" :id="id">{{text}}</button>
   </div>
 </template>
 
@@ -9,7 +9,13 @@
     name: 'Settings', 
     props:{ 
       color: String,
-      text: String
+      text: String,
+      id: String
+    },
+    methods:{
+      onClick(id){
+        alert(this.id)
+      }
     }
   }
 </script>
