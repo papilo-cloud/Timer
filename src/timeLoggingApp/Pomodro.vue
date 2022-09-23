@@ -1,12 +1,12 @@
 <template>
   <div class="pom">
     <h4>pomodoro</h4>
-    <div class="btn">
-      <BtnGroups text="pomodoro"/>
-      <BtnGroups text="short break"/>
-      <BtnGroups text="long break"/>
+    <div class="btn" ref="butn">
+      <BtnGroups text="pomodoro" class="but active"/>
+      <BtnGroups text="short break" class="but"/>
+      <BtnGroups text="long break" class="but"/>
     </div>
-    <Time />
+    <Time/>
   </div>
 </template> 
 
@@ -33,6 +33,18 @@ import Time from './Time.vue';
           }
         ]
       }
+    },
+    mounted() {
+      const reff = document.querySelectorAll('.but')
+      
+      for (let i = 0; i < reff.length; i++) {
+        reff[i].addEventListener('click', function(){
+          let x = document.getElementsByClassName('active')[0]
+          x.className = x.className.replace('active','')
+				this.className += ' active'
+        })
+        
+      }
     }
 }
 </script>
@@ -45,6 +57,10 @@ import Time from './Time.vue';
     width: 100%;
     padding: 0 1rem;
   }
+  .active{
+    background: red;
+    border-radius:25px;
+  }
   h4{
     margin: 2rem 0;
     letter-spacing: .2em;
@@ -55,14 +71,14 @@ import Time from './Time.vue';
     margin: 0 auto;
     align-items: center;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.5);
-    /* padding: 2px; */
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px;
     margin-bottom: 3rem;
     border-radius: 25px;
   }
   @media screen and (min-width:768px) {
     .btn{
-      width: 330px;
+      width: 360px;
     }
   }
 </style>

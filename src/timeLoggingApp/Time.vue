@@ -3,7 +3,7 @@
     <div class="sec">
       <svg id="svg" >
          <circle ref="circle" fill="none"
-      stroke-width="15"
+      stroke-width="15" stroke="cl"
      />
       </svg>
       <h1 class="h1">17:59</h1>
@@ -14,6 +14,8 @@
 <script>
   export default { 
     name: 'Time',
+    props:{
+    }
   }
 </script>
 
@@ -28,6 +30,7 @@
     border-radius: 50%;
     left: 50%;
     transform: translateX(-50%);
+    margin-bottom: 2.5rem;
   }
   .sec{
     position: absolute;
@@ -65,6 +68,11 @@
     stroke-width: 8;
     stroke-linecap: round;
     stroke: #F87070;
+    transform: rotate(-90deg);
+    stroke-dasharray: 603.2;
+    stroke-dashoffset: 603.2;
+    transform-origin: 50% 50%;
+     animation: anim 2s linear;
   }
   .h1{
     position: absolute;
@@ -72,6 +80,10 @@
     top: 50%;
     font-size: 3.5em;
     transform: translate(-50%,-50%);
+  }
+  @keyframes anim {
+
+      100%{stroke-dashoffset: 0}
   }
   @media screen and (min-width:768px) {
     .time{
@@ -93,7 +105,10 @@
     stroke-width: 8;
     stroke-linecap: round;
     stroke: #F87070;
+    stroke-dasharray: 848.23;
+    stroke-dashoffset: 848.23;
   }
+  
   .h1{
     font-size: 5em;
   }

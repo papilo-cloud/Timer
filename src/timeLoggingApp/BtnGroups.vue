@@ -7,7 +7,7 @@
 <script>
   export default {
     name: 'Settings', 
-    props:{
+    props:{ 
       color: String,
       text: String
     }
@@ -19,12 +19,21 @@
   .btnn{
     padding: 15px;
     font-size: 11px;
-    /* color: #000; */
     letter-spacing: 1px;
     border-radius:25px;
     border:none;
+    cursor: pointer;
     outline:none;
-
+  }
+  @media screen and (min-width:375px) {
+    .btnn{
+      font-size: 14px;
+    }
+  }
+  @media screen and (min-width:768px) {
+    .btnn{
+      font-size: 15px;
+    }
   }
 
 </style>
