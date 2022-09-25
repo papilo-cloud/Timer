@@ -14,8 +14,8 @@
      />
       </svg>
       <div class="timeout">
-        <h1 class="h1" ref="time">17:59</h1>
-        <button class="ref" @click="start" ref="start">Start</button>
+        <h1 class="h1" ref="time">25:00</h1>
+        <button class="ref" @click="start" ref="start" :class="{ anims: animate }">Start</button>
       </div>
      
     </div>
@@ -28,21 +28,25 @@ import BtnGroups from './BtnGroups.vue';
 
     var reset = false
     var paused = false
-    var timeOut = 300
+    var timeOut = 1500
 
 export default {
     name: "Pomodro",
     components: { BtnGroups},
     props:{
       selected: String,
-      time: String,
+      pomo: Number,
+      short: Number,
+      long: Number,
 
     },
        
     data() {
       return{
-        number: this.time,
+        // number: this.time,
         select:'',
+        animate: false,
+        animates: false,
       }
     },
     mounted() {
@@ -64,13 +68,15 @@ export default {
         console.log('the id is: ', n);
         if(n === 1){
           this.pomodoro()
-          console.log('Hello');
         }
         if(n === 2){
-          console.log('hi')
-        } else{
-          console.log('what')
+          this.shortBreak()
+        } 
+        if(n === 3){
+          this.longBreak()
         }
+        this.animates = true;
+       
        
       },
 
@@ -87,91 +93,89 @@ export default {
       },
 
        timer(sec) {
-				let tem = sec;
+				let anim = sec;
 				let contrl = setInterval(() =>{
-				const displayTime = this.$refs.time
-				const mins = Math.floor(sec / 60)
-				const displayMin = mins < 10 ? `0${mins}` : mins
-				const secs = sec % 60
-				const displaySec = secs < 10 ? `0${secs}` : secs
-				sec--
-				displayTime.innerText = `${displayMin}:${displaySec}`
-				
-				if(reset){
-					clearInterval(contrl)
-					reset = false
-				}
-				if (sec === 0) {
-					displayTime.innerHTML = "00:00"
-					this.$refs.start.innerHTML = "Start"
-					// alarmSetter()
-					clearInterval(contrl)
-				}
-				if (!paused) {
-      clearInterval(contrl)
-      // console.log(seconds)
-      }
-      this.rotatex(tem - sec)
+          const displayTime = this.$refs.time
+          const mins = Math.floor(sec / 60)
+          const displayMin = mins < 10 ? `0${mins}` : mins
+          const secs = sec % 60
+          const displaySec = secs < 10 ? `0${secs}` : secs
+          sec--
+          displayTime.innerText = `${displayMin}:${displaySec}`
+          
+          if(reset){
+            clearInterval(contrl)
+            reset = false
+          }
+          if (sec === 0) {
+            displayTime.innerHTML = "00:00"
+            this.$refs.start.innerHTML = "Start"
+            clearInterval(contrl)
+          }
+          if (!paused) {
+            clearInterval(contrl)
+          }
+          this.rotatex(anim - sec)
 
 		}, 1000)
-    // HELPER FUNC FOR EACH TIMER...
 		},
-      pomodoro () {
+
+     // HELPER FUNC FOR EACH TIMER...
+    pomodoro () {
         reset = true
-        timeOut = this.number.value * 60
+        timeOut = this.pomo * 60
+        this.timer(timeOut)
+		},
+    shortBreak () {
+        reset = true
+        timeOut = this.short * 60
+        this.timer(timeOut)
+		},
+    longBreak () {
+        reset = true
+        timeOut = this.long * 60
         this.timer(timeOut)
 		},
       
     start(){
 
-        console.log("start and pause button")
-        paused = !paused
-        console.log(paused)
+      console.log("start and pause button")
+      paused = !paused
 
-        if (paused) {
+      this.animate = true;
+      setTimeout(() => {
+        this.animate = false
+      }, 1000)
+
+      if (paused) {
         this.$refs.start.innerHTML = "Pause"
-        } else {
-        this.$refs.start.innerHTML = "Start"
+      } else {
+          this.$refs.start.innerHTML = "Start"
         if (timeOut <= 0) {
+          this.timer(timeOut)
           return
         } else {
           this.timeLeft()
           this.timer(timeOut)
         }
 
-        }
+      }
 
-        if (timeOut <= 0) {
+      if (timeOut <= 0) {
         this.$refs.start.innerHTML = "Start"
-        //   break__selectors.forEach(selected => {
-        // if (selected.checked) {
-
-        //   if (selected.id == "short") {
-        // 	// resetShort = false
-        // 	shortBreakMode()
-        //   } else if (selected.id == "long") {
-        // 	longBreakMode()
-        //   } else {
-        // 	setPomodoro()
-        //   }
-        // }
-
-        paused = !paused
-        // numb.innerHTML = "Pause"
         return
-        } 
-        else {
-        // numb.innerHTML = "Start"
+      } 
+      else {
         this.timer(timeOut)
-        }
+      }
 
-        },
-        timeLeft(){
-            const left = this.$refs.time.innerHTML
-            const [min, sec] = left.split(':')
-            timeOut = min * 60 + sec
-            // return timeOut
-          }
+    },
+    timeLeft(){
+      const left = this.$refs.time.innerHTML
+      const [min, sec] = left.split(':')
+      timeOut = Number(min) * 60 + Number(sec)
+      return timeOut
+    }
       
     },
     
@@ -191,6 +195,7 @@ export default {
   }
   .active{
     /* background: red; */
+    transition: .2s;
     border-radius:25px;
     color: #161932;
   }
@@ -206,6 +211,7 @@ export default {
   }
   h4{
     margin: 2rem 0;
+    font-size: 19px;
     letter-spacing: .2em;
   }
   .but{
@@ -225,6 +231,17 @@ export default {
     margin-bottom: 4rem;
     border-radius: 35px;
   }
+  .animss{
+    animation: anime .2s linear;
+  }
+  @keyframes anime{
+    from{
+      transform: scale(.8);
+    }
+    to{
+      transform: scale(1);
+    }
+  }
   @media screen and (min-width:768px) {
     .btn{
       width: 360px;
@@ -237,7 +254,7 @@ export default {
     width: 250px;
     height: 250px;
     background-color: #1E213F;
-    box-shadow:-1em -1em 2em .5em #353a70, 2em 2em 3em  rgba(0, 0, 0, 0.5);
+    box-shadow:-1em -1em 2em .5em #353a70, 2em 2em 3em  rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     left: 50%;
     transform: translateX(-50%);
@@ -283,7 +300,20 @@ export default {
     stroke-dasharray: 603.2;
     stroke-dashoffset: 603.2;
     transform-origin: 50% 50%;
-     animation: anim 2s infinite;
+     /* animation: anim 1s infinite; */
+  }
+
+  /* Button Animation */
+  .anims{
+    animation: anim .2s linear;
+  }
+  @keyframes anim{
+    from{
+      transform:translateX(50%) scale(.8);
+    }
+    to{
+      transform:translateX(50%) scale(1);
+    }
   }
   .color1 svg circle{
     background: #F87070;
@@ -311,7 +341,8 @@ export default {
   }
   .timeout .ref{
     position: absolute;
-    left: 50%;
+    /* right: 50%; */
+    right: 50%;
     top: 3em;
     color: #fff;
     font-size: 16px;
@@ -319,19 +350,22 @@ export default {
     letter-spacing: 3px;
     border: none;
     outline: none;
-    transform: translateX(-50%);
+    transform: translateX(50%);
+    /* transform: translateX(50%); */
+    text-align: center;
+    cursor: pointer;
   }
-    .ref:focus{
+    /* .ref:focus{
       animation: anims 2s linear;
-      border: 1px dotted #fff;
+      border: 1px dashed #fff;
       border-radius: 5px;
-      padding: 2px;
-  }
+      padding: 5px;
+  } */
 
-  @keyframes anim {
+  /* @keyframes anim {
 
       100%{stroke-dashoffset: 0}
-  }
+  } */
   @media screen and (min-width:768px) {
     .time{
       width: 330px;

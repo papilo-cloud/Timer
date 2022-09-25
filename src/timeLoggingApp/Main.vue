@@ -1,12 +1,10 @@
 <template>
   <div class="main" :class="select">
-    <Pomodro :selected="selected" :class="selected" :time="inputs"/>
-    <!-- <Settings v-if="show" :show="show" @toggle-show="toggleShow"/> -->
+    <Pomodro :selected="selected" :class="selected" :pomo="pomo" :short="short" :long="long" />
     <div class="settings" v-show="shows">
         <form >
           <div class="h2">
             <h2>Settings</h2>
-            {{inputs}}
             <button @click="toggleShow">
               <img src="../assets/icon-close.svg" alt="close">
             </button>
@@ -16,19 +14,19 @@
             <div class="num">
             <label>
               pomodoro <br>
-              <input type="number" min="15" max="25" value="25" v-model="inputs" >
+              <input type="number" min="15" max="25" value="25" v-model="pomo" >
             </label>
             </div>
             <div class="num">
             <label>
               short break <br>
-              <input type="number" min="1" max="5" value="5">
+              <input type="number" min="1" max="5" value="5" v-model="short">
             </label>
             </div>
             <div class="num">
             <label>
               long break <br>
-              <input type="number" min="5" max="15" value="15">
+              <input type="number" min="5" max="15" value="15" v-model="long" >
             </label>
           </div>
           </div>
@@ -72,7 +70,9 @@ import Pomodro from './Pomodro.vue';
         selected:'color1',
         select:'serif',
         shows:false,
-        inputs: '',
+        pomo: 25,
+        short: 5,
+        long: 15,
       }
     }, 
     methods:{
@@ -98,6 +98,7 @@ import Pomodro from './Pomodro.vue';
         console.log(y);
 
         for(let i in y){
+          y[0].checked == true
           if(y[i].checked){
             if(y[i].id === 'color1'){
               this.selected = 'color1'
@@ -109,7 +110,7 @@ import Pomodro from './Pomodro.vue';
               this.selected = 'color3'
             }
           }
-          console.log(y[i]);
+          console.log(y[0]);
        }
 
        for(let i in x){

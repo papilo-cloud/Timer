@@ -1,7 +1,7 @@
 import Vue from 'vue'
 // import App from './App.vue'
 // import Method from './Method.vue'
-import Main from './timeLoggingApp/Main.vue'
+import Main from './timeLoggingApp/Main.vue';
 
 Vue.config.productionTip = false
 

@@ -1,6 +1,6 @@
 <template>
   <div class="butn">
-    <button @click="onClick" class="btnn" ref="numm">{{text}}</button>
+    <button @click="onClick" :class="{anims: animate}" class="btnn" ref="numm">{{text}}</button>
   </div>
 </template>
 
@@ -14,15 +14,21 @@
     },
     data(){
       return{
-        Id: this.id
+        Id: this.id,
+        animate: false
       }
     },
     methods:{
+      
       onClick(e){
-      //  const x = this.$refs.numm
-        // alert()
         e.preventDefault()
         this.$emit('butn-func', this.Id)
+
+        this.animate = true;
+        setTimeout(() => {
+          this.animate = false
+        }, 1000)
+
       }
     }
   }
@@ -43,6 +49,18 @@
     font-weight: bold;
     /* width: 100%; */
 
+  }
+  .anims{
+    animation: anim .2s linear;
+    transition: .2s
+  }
+  @keyframes anim{
+    from{
+      transform: scale(.8);
+    }
+    to{
+      transform: scale(1);
+    }
   }
   @media screen and (min-width:375px) {
     .btnn{
