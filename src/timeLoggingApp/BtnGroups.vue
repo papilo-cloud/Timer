@@ -1,6 +1,6 @@
 <template>
   <div class="butn">
-    <button @click="onClick" class="btnn" :id="id">{{text}}</button>
+    <button @click="onClick" class="btnn" ref="numm">{{text}}</button>
   </div>
 </template>
 
@@ -9,12 +9,20 @@
     name: 'Settings', 
     props:{ 
       color: String,
-      text: String,
-      id: String
+      id: Number,
+      text: String, 
+    },
+    data(){
+      return{
+        Id: this.id
+      }
     },
     methods:{
-      onClick(id){
-        alert(this.id)
+      onClick(e){
+      //  const x = this.$refs.numm
+        // alert()
+        e.preventDefault()
+        this.$emit('butn-func', this.Id)
       }
     }
   }
@@ -30,6 +38,11 @@
     border:none;
     cursor: pointer;
     outline:none;
+    flex: 1;
+    color:#fff;
+    font-weight: bold;
+    /* width: 100%; */
+
   }
   @media screen and (min-width:375px) {
     .btnn{

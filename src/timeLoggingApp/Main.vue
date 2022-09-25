@@ -1,11 +1,12 @@
 <template>
   <div class="main" :class="select">
-    <Pomodro :selected="selected" :class="selected"/>
+    <Pomodro :selected="selected" :class="selected" :time="inputs"/>
     <!-- <Settings v-if="show" :show="show" @toggle-show="toggleShow"/> -->
     <div class="settings" v-show="shows">
         <form >
           <div class="h2">
             <h2>Settings</h2>
+            {{inputs}}
             <button @click="toggleShow">
               <img src="../assets/icon-close.svg" alt="close">
             </button>
@@ -15,7 +16,7 @@
             <div class="num">
             <label>
               pomodoro <br>
-              <input type="number" min="15" max="25" value="25" >
+              <input type="number" min="15" max="25" value="25" v-model="inputs" >
             </label>
             </div>
             <div class="num">
@@ -60,7 +61,7 @@
 <script>
 import Pomodro from './Pomodro.vue'; 
   export default {
-    name:'Main',
+    name:'Main', 
     components: {
     Pomodro,
     },
@@ -70,7 +71,8 @@ import Pomodro from './Pomodro.vue';
         fonts:['serif','sans','verd'],
         selected:'color1',
         select:'serif',
-        shows:false
+        shows:false,
+        inputs: '',
       }
     }, 
     methods:{
