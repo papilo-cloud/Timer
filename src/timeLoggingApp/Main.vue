@@ -14,19 +14,19 @@
             <div class="num">
             <label>
               pomodoro <br>
-              <input type="number" min="15" max="25" value="25" v-model="pomo" >
+              <input  ref="num1" type="number" min="15" max="25" value="25" v-model="pomo" >
             </label>
             </div>
             <div class="num">
             <label>
               short break <br>
-              <input type="number" min="1" max="5" value="5" v-model="short">
+              <input ref="num2" type="number" min="1" max="5" value="5" v-model="short">
             </label>
             </div>
             <div class="num">
             <label>
               long break <br>
-              <input type="number" min="5" max="15" value="15" v-model="long" >
+              <input ref="num3" type="number" min="5" max="15" value="15" v-model="long" >
             </label>
           </div>
           </div>
@@ -53,6 +53,9 @@
     
   </div>
     <button class="button" @click="onClick"><img src="../assets/icon-settings.svg" alt="asset"></button>
+    <div class="foot">
+      <p>Made with &#128150; by <a href="tel:+2348060408434">Badamasi</a></p>
+    </div>
   </div>
 </template> 
 
@@ -75,6 +78,17 @@ import Pomodro from './Pomodro.vue';
         long: 15,
       }
     }, 
+    mounted(){
+      let z = this.$refs.items
+      let zz = this.$refs.item
+
+      z[0].checked = true
+      zz[0].checked = true
+      // for(let i in x){
+          
+      //  } 
+
+    },
     methods:{
 
       onClick(){
@@ -95,7 +109,6 @@ import Pomodro from './Pomodro.vue';
 
         var y = this.$refs.item
         var x = this.$refs.items
-        console.log(y);
 
         for(let i in y){
           y[0].checked == true
@@ -110,7 +123,6 @@ import Pomodro from './Pomodro.vue';
               this.selected = 'color3'
             }
           }
-          console.log(y[0]);
        }
 
        for(let i in x){
@@ -139,7 +151,15 @@ import Pomodro from './Pomodro.vue';
   padding: 0;
   box-sizing: border-box;
 }
+.foot{
+  margin: 0;
+  padding: 10px 0;
+  letter-spacing: 1px;
+}
+.foot a{
+  color: #fff;
 
+}
 body{
   background: #1E213F;
   color: #fff,#EFF1FA;
@@ -161,17 +181,15 @@ body{
   }
 
   /* CHANGING FONTS & COLORS */
-  .serif{
-    font-family: serif;
-  }
-  .serif button{
-    font-family: serif;
+
+  .serif, .serif button{
+    font-family:  "Audiowide", sans-serif;;
   }
   .sans, .sans button{
-    font-family: sans-serif;
+    font-family:"ABeeZee", sans-serif;
   }
   .verd, .verd button{
-    font-family: cursive;
+    font-family: "Autour One", sans-serif
   }
   
    button{

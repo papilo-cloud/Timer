@@ -29,7 +29,8 @@ import BtnGroups from './BtnGroups.vue';
     var reset = false
     var paused = false
     var timeOut = 1500
-
+    // let x = this.audios
+    var aud 
 export default {
     name: "Pomodro",
     components: { BtnGroups},
@@ -47,11 +48,14 @@ export default {
         select:'',
         animate: false,
         animates: false,
+        alarmOut: false,
+        // audios: "/media/Stopwatch-sound-effect.64cbdf0e.mp3",
       }
     },
     mounted() {
+      aud = (new Audio(require('@/assets/Stopwatch-sound-effect.mp3')))
       const reff = document.querySelectorAll('.but')
-      
+
       for (let i = 0; i < reff.length; i++) {
         reff[i].addEventListener('click', function(){
           let x = document.getElementsByClassName('active')[0]
@@ -103,14 +107,21 @@ export default {
           sec--
           displayTime.innerText = `${displayMin}:${displaySec}`
           
+          
           if(reset){
             clearInterval(contrl)
             reset = false
           }
+          if(sec === 10){
+            aud.play()
+            }
+         
           if (sec === 0) {
+            this.alarmOut = false
             displayTime.innerHTML = "00:00"
             this.$refs.start.innerHTML = "Start"
             clearInterval(contrl)
+            aud.pause()
           }
           if (!paused) {
             clearInterval(contrl)
@@ -123,17 +134,34 @@ export default {
      // HELPER FUNC FOR EACH TIMER...
     pomodoro () {
         reset = true
-        timeOut = this.pomo * 60
+        let z = this.pomo
+        if(z < 15){
+          alert('The min value is 15')
+          z = 15
+        }
+        timeOut = z * 60
         this.timer(timeOut)
+        
+        console.log(z)
 		},
     shortBreak () {
         reset = true
-        timeOut = this.short * 60
+        let z = this.short
+        if(z < 1){
+          alert('The min value is 1')
+          z = 1
+        }
+        timeOut = z * 60
         this.timer(timeOut)
 		},
     longBreak () {
         reset = true
-        timeOut = this.long * 60
+        let z = this.long
+        if(z < 5){
+          alert('The min value is 5')
+          z = 5
+        }
+        timeOut = z * 60
         this.timer(timeOut)
 		},
       
@@ -190,6 +218,17 @@ export default {
     width: 100%;
     padding: 0 1rem;
   }
+
+  /* Classes */
+  .serif{
+    font-family:  "Audiowide", sans-serif;;
+  }
+  .sans{
+    font-family:"ABeeZee", sans-serif;
+  }
+  .verd{
+    font-family: "Autour One", sans-serif
+  }
   .btn{
     color: #fff;
   }
@@ -244,7 +283,7 @@ export default {
   }
   @media screen and (min-width:768px) {
     .btn{
-      width: 360px;
+      width: 420px;
     }
   }
   /* // Time Styling */

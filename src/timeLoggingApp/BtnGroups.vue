@@ -38,15 +38,15 @@
 
   .btnn{
     padding: 15px;
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: 10px;
+    letter-spacing: 0px;
     border-radius:25px;
     border:none;
     cursor: pointer;
     outline:none;
     flex: 1;
     color:#fff;
-    font-weight: bold;
+    font-weight: 500;
     /* width: 100%; */
 
   }
@@ -64,7 +64,7 @@
   }
   @media screen and (min-width:375px) {
     .btnn{
-      font-size: 14px;
+      font-size: 13px;
     }
   }
   @media screen and (min-width:768px) {
