@@ -153,6 +153,7 @@ import Pomodro from './Pomodro.vue';
 }
 .foot{
   margin: 0;
+  margin-top: 1rem;
   padding: 10px 0;
   letter-spacing: 1px;
 }
@@ -171,7 +172,7 @@ body{
   .main{
     position: relative;
     max-width: 700px;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
