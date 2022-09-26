@@ -290,8 +290,8 @@ export default {
   .time{
     position: relative;
     overflow: hidden;
-    width: 250px;
-    height: 250px;
+    width: 270px;
+    height: 270px;
     background-color: #1E213F;
     box-shadow:-1em -1em 2em .5em #353a70, 2em 2em 3em  rgba(0, 0, 0, 0.6);
     border-radius: 50%;
@@ -304,8 +304,8 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.4);
     box-shadow: -2em -2em 3em  rgba(0, 0, 0, 0.5),inset 2em 2em 3em  rgba(0, 0, 0, 0.1);
@@ -321,25 +321,29 @@ export default {
     color: #fff;
   }
   .time svg{
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
   }
   svg circle{
-    cx: 100;
-    cy:100;
-    r: 96;
-    stroke-width: 8;
+    cx: 110;
+    cy:110;
+    r: 106;
+    stroke-width: 7;
     stroke-linecap: round;
     stroke: #F87070;
     transform: rotate(-90deg);
-    stroke-dasharray: 603.2;
-    stroke-dashoffset: 603.2;
+    stroke-dasharray: 666.02;
+    stroke-dashoffset: 666.02;
     transform-origin: 50% 50%;
-     /* animation: anim 1s infinite; */
+     /* animation: anims 2s infinite; */
+  }
+  @keyframes anims{
+    from{ stroke-dashoffset: 603.2;}
+    to{ stroke-dashoffset: 0;}
   }
 
   /* Button Animation */

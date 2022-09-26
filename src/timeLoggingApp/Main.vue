@@ -153,7 +153,7 @@ import Pomodro from './Pomodro.vue';
 }
 .foot{
   margin: 0;
-  margin-top: 1rem;
+  margin-top: 4em 0 0 0;
   padding: 10px 0;
   letter-spacing: 1px;
 }
@@ -198,6 +198,7 @@ body{
     background: transparent;
   }
   .button{
+    margin-bottom: 2rem;
     font-size:22px;
     cursor: pointer;
     border:none;
