@@ -411,26 +411,26 @@ export default {
   } */
   @media screen and (min-width:768px) {
     .time{
+      width: 360px;
+      height: 360px;
+    }
+    .sec{
       width: 330px;
       height: 330px;
     }
-    .sec{
-      width: 300px;
-      height: 300px;
-    }
     .time svg{
-      width: 280px;
-      height: 280px;
+      width: 310px;
+      height: 310px;
     }
     svg circle{
-    cx: 140;
-    cy:140;
-    r: 135;
+    cx: 155;
+    cy:155;
+    r: 150;
     stroke-width: 8;
     stroke-linecap: round;
     stroke: #F87070;
-    stroke-dasharray: 848.23;
-    stroke-dashoffset: 848.23;
+    stroke-dasharray: 942.5;
+    stroke-dashoffset: 942.5;
   }
   .timeout .ref{
     top: 4em;
