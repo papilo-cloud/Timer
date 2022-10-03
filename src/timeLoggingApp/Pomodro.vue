@@ -139,6 +139,10 @@ export default {
           alert('The min value is 15')
           z = 15
         }
+        if(z > 25){
+          alert('The max value is 25')
+          z = 25
+        }
         timeOut = z * 60
         this.timer(timeOut)
         
@@ -151,6 +155,10 @@ export default {
           alert('The min value is 1')
           z = 1
         }
+        if(z > 5){
+          alert('The max value is 5')
+          z = 5
+        }
         timeOut = z * 60
         this.timer(timeOut)
 		},
@@ -160,6 +168,10 @@ export default {
         if(z < 5){
           alert('The min value is 5')
           z = 5
+        }
+        if(z > 15){
+          alert('The max value is 15')
+          z = 15
         }
         timeOut = z * 60
         this.timer(timeOut)
@@ -173,7 +185,7 @@ export default {
       this.animate = true;
       setTimeout(() => {
         this.animate = false
-      }, 1000)
+      }, 4000)
 
       if (paused) {
         this.$refs.start.innerHTML = "Pause"
