@@ -85,6 +85,8 @@ export default {
       },
 
       rotatex(remain){
+	// got this piece from Chamu Mutezva ChamuMutezva...
+      	
         const x = this.$refs.circle
         const crcmfrn = x.getTotalLength()
         console.log(crcmfrn)
@@ -97,6 +99,7 @@ export default {
       },
 
        timer(sec) {
+	// got this piece from Chamu Mutezva ChamuMutezva...
 				let anim = sec;
 				let contrl = setInterval(() =>{
           const displayTime = this.$refs.time
